@@ -1,20 +1,21 @@
 # PPM Image
 A small library for easily loading, saving, creating, and editing 24-bit color ppm image files.
 
-## PPM::Image
-To use this class, construct an object using either the default
-constructor or the reading constructor. Use the "write" function
-to write pixel data to a ppm image file. Use the "read" function
-to read pixel data from a ppm image file and resize the pixel array
-automatically. Examples below.
-
 ```
-// Load image using read constructor
-PPM::Image image("Cat.ppm");
+// Create a 600x400 PPM image
+ppm::image<600, 400> img;
 
-// Set the pixel at 55, 99 to magenta
-image.set(55, 99, PPM::Color(255, 0, 255));
+// Set the pixel at (555, 369) to red
+img.at(555, 369) = ppm::color::red;
 
-// Write image to new file
-image.write("New Cat.ppm");
+// Set the pixel at (123, 456) to dark magenta using rgb
+img.at(123, 456) = ppm::color(127, 0, 127)
+
+// Save the image as "out.ppm"
+std::ofstream file("out.ppm");
+img >> file;
+
+// Load the image from "in.ppm"
+std::ifstream file("in.ppm");
+img << file;
 ```
