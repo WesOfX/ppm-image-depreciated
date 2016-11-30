@@ -1,5 +1,5 @@
 # PPM Image
-A small library for easily loading, saving, creating, and editing 24-bit color ppm image files.
+A small library for easily loading, saving, streaming creating, and editing 24-bit color ppm image files.
 
 ```
 // Create a 600x400 PPM image
