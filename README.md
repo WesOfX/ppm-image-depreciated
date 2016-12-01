@@ -9,7 +9,7 @@ ppm::image<600, 400> img;
 img.at(555, 369) = ppm::color::red;
 
 // Set the pixel at (123, 456) to dark magenta using rgb
-img.at(123, 456) = ppm::color(127, 0, 127)
+img.at(123, 456) = ppm::color(127, 0, 127);
 
 // Save the image as "out.ppm"
 std::ofstream file("out.ppm");
