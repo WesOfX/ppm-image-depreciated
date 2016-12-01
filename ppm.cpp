@@ -69,4 +69,3 @@ std::istream& ppm::image<width, height>::operator>>(std::istream& is){
 	return is;
 }
 
-template class ppm::image<31, 31>;
