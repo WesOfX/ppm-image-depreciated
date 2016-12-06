@@ -4,7 +4,7 @@ Easily load, save, stream, create, and edit ppm images.
 ```
 using namespace ppm;
 
-// Create a 600x400 PPM image
+// Create a 600 by 400 PPM image
 image<600, 400> img;
 
 // Set the pixel at (555, 369) to red
