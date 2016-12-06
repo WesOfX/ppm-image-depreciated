@@ -42,14 +42,14 @@ public:
 	// Upload the image to a stream
 	std::ostream& operator>>(std::ostream& os){
 		// Write the header
-		os << "P6\n" // 24 bit color in binary
+		os << "P6\n"
 		   << std::to_string(width)
 		   << ' '
 		   << std::to_string(height)
 		   << std::endl
-		   << "255\n"; // 24 bit
+		   << "255\n"; // Maximum color value
 
-		// Write pixel data
+		// Write the pixel data
 		for(auto& i: pixels){
 			os << i.r << i.g << i.b;
 		}
@@ -57,7 +57,7 @@ public:
 		return os;
 	}
 private:
-	// The image pixels
+	// The pixels
 	pixel_array pixels;
 };
 };
