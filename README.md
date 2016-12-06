@@ -15,7 +15,7 @@ img.at(123, 456) = ppm::color(127, 0, 127);
 std::ofstream file("out.ppm");
 img >> file;
 
-// Load the image from "in.ppm"
+// Load an image from "in.ppm"
 std::ifstream file("in.ppm");
 img << file;
 ```
