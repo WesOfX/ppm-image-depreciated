@@ -23,11 +23,12 @@ public:
 
 	// Download the image from a stream
 	std::istream& operator<<(std::istream& is){
-		// Skip the header
-		for(auto i = 0; i < 5; i++) is.get();
-
 		// The current line
 		std::string line;
+
+		// Skip the header
+		for(auto i = 0; i < 4; i++) is >> line;
+		is.get();
 
 		// Read the pixel data
 		for(std::size_t y = 0; y < height; y++){
