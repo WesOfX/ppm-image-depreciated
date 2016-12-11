@@ -15,7 +15,7 @@ img.at(123, 456) = color(127, 0, 127);
 
 // Save the image as "out.ppm"
 std::ofstream os("out.ppm");
-on << img;
+os << img;
 
 // Load an image from "in.ppm"
 std::ifstream is("in.ppm");
