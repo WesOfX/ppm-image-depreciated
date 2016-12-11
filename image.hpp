@@ -9,20 +9,25 @@ namespace ppm{
 // PPM image
 template<std::size_t width, std::size_t height>
 class image{
-public:
-	// The type of the pixel array
-	typedef std::array<color, width * height> pixel_array;
+	// The pixel array
+	std::array<color, width * height> pixels;
 
+public:
 	// Construct an image from a pixel array optionally
-	image(pixel_array pixels = {}): pixels(pixels){};
+	image(std::array<color, width * height> pixels = {}): pixels(pixels){};
+
+	// Return a pixel's color value
+	const color& at(std::size_t x, std::size_t y) const{
+		return pixels.at(x + y * width);
+	}
 
 	// Return a pixel's color value
 	color& at(std::size_t x, std::size_t y){
 		return pixels.at(x + y * width);
 	}
 
-	// Download the image from a stream
-	std::istream& operator<<(std::istream& is){
+	// Download the image from an istream
+	friend std::istream& operator>>(std::istream& is, image<width, height>& rhs){
 		// The current line
 		std::string line;
 
@@ -33,15 +38,15 @@ public:
 		// Read the pixel data
 		for(std::size_t y = 0; y < height; y++){
 			for(std::size_t x = 0; x < width; x++){
-				at(x, y) = {(unsigned char)is.get(), (unsigned char)is.get(), (unsigned char)is.get()};
+				rhs.at(x, y) = {(unsigned char)is.get(), (unsigned char)is.get(), (unsigned char)is.get()};
 			}
 		}
 
 		return is;
 	}
 
-	// Upload the image to a stream
-	std::ostream& operator>>(std::ostream& os){
+	// Upload the image to an ostream
+	friend std::ostream& operator<<(std::ostream& os, const image<width, height>& rhs){
 		// Write the header
 		os << "P6\n"
 		   << std::to_string(width)
@@ -51,14 +56,11 @@ public:
 		   << "255\n"; // Maximum color value
 
 		// Write the pixel data
-		for(auto& i: pixels){
+		for(auto& i: rhs.pixels){
 			os << i.r << i.g << i.b;
 		}
 
 		return os;
 	}
-private:
-	// The pixels
-	pixel_array pixels;
 };
 };
