@@ -14,10 +14,10 @@ img.at(555, 369) = color::red;
 img.at(123, 456) = color(127, 0, 127);
 
 // Save the image as "out.ppm"
-std::ofstream file("out.ppm");
-img >> file;
+std::ofstream os("out.ppm");
+on << img;
 
 // Load an image from "in.ppm"
-std::ifstream file("in.ppm");
-img << file;
+std::ifstream is("in.ppm");
+is >> img;
 ```
